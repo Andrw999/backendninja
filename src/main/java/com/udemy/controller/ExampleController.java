@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.udemy.model.Person;
 import com.udemy.util.Definitions;
 
 @Controller
@@ -16,7 +17,8 @@ public class ExampleController {
 	@GetMapping( Definitions.EXAMPlE_VIEW + "String" )//esta es la forma resumida para hacer unRequestMapping de tipo GET.
 //	@RequestMapping( value="/exampleString", method=RequestMethod.GET )
 	public String exampleString( Model model ){
-		model.addAttribute( "name", "motherfuckers" );
+		
+		model.addAttribute( "person", new Person( "Mike", 41 ) );
 		return Definitions.EXAMPLE_RETUN;
 	}
 	
@@ -27,7 +29,7 @@ public class ExampleController {
 		
 		//Very important to add template to the constructor
 		ModelAndView modelAndView = new ModelAndView( Definitions.EXAMPlE_VIEW );
-		modelAndView.addObject( "name", "motherfuckers" );
+		modelAndView.addObject( "person", new Person( "Thomas", 41 ) );
 		
 //		return new ModelAndView( Definitions.EXAMPLE_RETUN );
 		return modelAndView;
