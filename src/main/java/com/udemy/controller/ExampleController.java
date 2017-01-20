@@ -1,5 +1,8 @@
 package com.udemy.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,7 +21,7 @@ public class ExampleController {
 //	@RequestMapping( value="/exampleString", method=RequestMethod.GET )
 	public String exampleString( Model model ){
 		
-		model.addAttribute( "person", new Person( "Mike", 41 ) );
+		model.addAttribute( "people", getPersonList( ) );
 		return Definitions.EXAMPLE_RETUN;
 	}
 	
@@ -29,9 +32,19 @@ public class ExampleController {
 		
 		//Very important to add template to the constructor
 		ModelAndView modelAndView = new ModelAndView( Definitions.EXAMPlE_VIEW );
-		modelAndView.addObject( "person", new Person( "Thomas", 41 ) );
+		modelAndView.addObject( "people", getPersonList( ) );
 		
 //		return new ModelAndView( Definitions.EXAMPLE_RETUN );
 		return modelAndView;
+	}
+	
+	private List<Person> getPersonList( ){
+		List<Person> people = new ArrayList<>( );
+		people.add( new Person( "Mike", 41 ) );
+		people.add( new Person( "Jhon", 31 ) );
+		people.add( new Person( "Lucas", 35 ) );
+		people.add( new Person( "Lucy", 60 ) );
+		
+		return people;
 	}
 }
