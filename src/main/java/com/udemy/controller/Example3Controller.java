@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
 
 import com.udemy.model.Person;
 import com.udemy.util.Definitions;
@@ -15,6 +16,22 @@ import com.udemy.util.Definitions;
 @RequestMapping( "/example3" )
 public class Example3Controller {
 
+	//Redirecciones primera forma
+	//Se debe de dar el path a donde
+	//se hara la redirección
+//	@GetMapping( "/" )
+//	public String redirect( ){
+//		return "redirect:/example3/showform";
+//	}
+	
+	//Con el Objeto Redirect de spring
+	//Se debe de dar el path a donde
+	//se hara la redirección
+	@GetMapping( "/" )
+	public RedirectView redirect( ){
+		return new RedirectView( "/example3/showform" );
+	} 
+	
 	@GetMapping( "/showform" )
 	public String showForm( Model model ){
 		model.addAttribute( "person", new Person( ) );
