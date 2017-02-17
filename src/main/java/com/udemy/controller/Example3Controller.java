@@ -35,6 +35,7 @@ public class Example3Controller {
 	@GetMapping( "/showform" )
 	public String showForm( Model model ){
 		model.addAttribute( "person", new Person( ) );
+		int i = 6 / 0;
 		return Definitions.FORM_VIEW;
 	}
 	
