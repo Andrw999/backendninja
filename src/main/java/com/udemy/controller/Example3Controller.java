@@ -1,5 +1,7 @@
 package com.udemy.controller;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,6 +18,8 @@ import com.udemy.util.Definitions;
 @RequestMapping( "/example3" )
 public class Example3Controller {
 
+	private static final Log LOGGER = LogFactory.getLog( Example3Controller.class );
+	
 	//Redirecciones primera forma
 	//Se debe de dar el path a donde
 	//se hara la redirección
@@ -35,7 +39,8 @@ public class Example3Controller {
 	@GetMapping( "/showform" )
 	public String showForm( Model model ){
 		model.addAttribute( "person", new Person( ) );
-		int i = 6 / 0;
+		//We do this in order to throw an internal error
+		//		int i = 6 / 0;
 		return Definitions.FORM_VIEW;
 	}
 	
