@@ -38,6 +38,10 @@ public class Example3Controller {
 	
 	@GetMapping( "/showform" )
 	public String showForm( Model model ){
+		LOGGER.info( "INFO TRACE" );
+		LOGGER.warn( "WARNING TRACE" );
+		LOGGER.error( "ERROR TRACE" );
+		LOGGER.debug( "DEBUG TRACE" );
 		model.addAttribute( "person", new Person( ) );
 		//We do this in order to throw an internal error
 		//		int i = 6 / 0;
@@ -46,8 +50,10 @@ public class Example3Controller {
 	
 	@PostMapping( "/addperson" )
 	public ModelAndView addPerson( @ModelAttribute( "person" ) Person person ){
+		LOGGER.info( "METHOD: 'addPerson' -- PARAMS: '" + person + "'" );
 		ModelAndView modelAndView = new ModelAndView( Definitions.RESULT_VIEW );
 		modelAndView.addObject( "person", person );
+		LOGGER.info( "TEMPLATE: '" + Definitions.RESULT_VIEW + "' -- DATA: '" + person + "'");
 		return modelAndView;
 	}
 	
