@@ -2,3 +2,4 @@ server:
   error:
     whitelabel:
       enabled: true
+  port: 8383

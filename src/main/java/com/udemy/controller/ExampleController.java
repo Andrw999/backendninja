@@ -3,12 +3,15 @@ package com.udemy.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.udemy.component.ExampleComponent;
 import com.udemy.model.Person;
 import com.udemy.util.Definitions;
 
@@ -16,11 +19,15 @@ import com.udemy.util.Definitions;
 @RequestMapping( "/example" )
 public class ExampleController {
 	
+	@Autowired
+	@Qualifier( Definitions.EXAMPLE_COMPONENT )
+	private ExampleComponent exampleComponent;
+	
 	//Primera forma
 	@GetMapping( Definitions.EXAMPlE_VIEW + "String" )//esta es la forma resumida para hacer unRequestMapping de tipo GET.
 //	@RequestMapping( value="/exampleString", method=RequestMethod.GET )
 	public String exampleString( Model model ){
-		
+		exampleComponent.sayHi( );
 		model.addAttribute( "people", getPersonList( ) );
 		return Definitions.EXAMPLE_RETUN;
 	}

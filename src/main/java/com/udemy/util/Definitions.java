@@ -12,4 +12,7 @@ public class Definitions {
 	//ERRORS
 	public static final String ERROR_404_VIEW			=			"error/404";
 	public static final String ERROR_500_VIEW			=			"error/500";
+	
+	//COMPONENTS
+	public static final String EXAMPLE_COMPONENT		=			"exampleComponent";
 }
