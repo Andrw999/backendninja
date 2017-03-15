@@ -15,4 +15,5 @@ public class Definitions {
 	
 	//COMPONENTS
 	public static final String EXAMPLE_COMPONENT		=			"exampleComponent";
+	public static final String REQUEST_TIME_COMPONENT	=			"requestTimeInterceptor";
 }
