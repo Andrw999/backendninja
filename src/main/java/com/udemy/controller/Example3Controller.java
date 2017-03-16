@@ -1,9 +1,12 @@
 package com.udemy.controller;
 
+import javax.validation.Valid;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -49,11 +52,17 @@ public class Example3Controller {
 	}
 	
 	@PostMapping( "/addperson" )
-	public ModelAndView addPerson( @ModelAttribute( "person" ) Person person ){
-		LOGGER.info( "METHOD: 'addPerson' -- PARAMS: '" + person + "'" );
-		ModelAndView modelAndView = new ModelAndView( Definitions.RESULT_VIEW );
-		modelAndView.addObject( "person", person );
-		LOGGER.info( "TEMPLATE: '" + Definitions.RESULT_VIEW + "' -- DATA: '" + person + "'");
+	public ModelAndView addPerson( @Valid @ModelAttribute( "person" ) Person person, BindingResult bindingResult ){
+		ModelAndView modelAndView = new ModelAndView( );
+		if( bindingResult.hasErrors( ) ){
+			modelAndView.setViewName( Definitions.FORM_VIEW );
+		} else{
+			modelAndView.setViewName( Definitions.RESULT_VIEW );
+			modelAndView.addObject( "person", person );
+		}
+//		LOGGER.info( "METHOD: 'addPerson' -- PARAMS: '" + person + "'" );
+		
+//		LOGGER.info( "TEMPLATE: '" + Definitions.RESULT_VIEW + "' -- DATA: '" + person + "'");
 		return modelAndView;
 	}
 	
